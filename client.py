@@ -6,6 +6,7 @@ from threading import Thread
 # ---ПУГАМЕ НАЛАШТУВАННЯ ---
 WIDTH, HEIGHT = 800, 600
 init()
+mixer.init()
 screen = display.set_mode((WIDTH, HEIGHT))
 clock = time.Clock()
 display.set_caption("Пінг-Понг")
@@ -52,6 +53,13 @@ BG_IMG3 = transform.scale(BG_IMG3, (800, 600))
 
 
 # --- ЗВУКИ ---
+zvyk1 = mixer.Sound('dragon-studio-fist-banging-on-hollow-surface-494315.mp3')
+zvyk1.set_volume(1)
+
+zvyk2 = mixer.Sound('pingpongbat.ogg')
+zvyk2.set_volume(1)
+
+
 
 # --- ГРА ---
 game_over = False
@@ -110,9 +118,14 @@ while True:
         if game_state['sound_event']:
             if game_state['sound_event'] == 'wall_hit':
                 # звук відбиття м'ячика від стін
+                zvyk1.play()
                 pass
             if game_state['sound_event'] == 'platform_hit':
+
+                zvyk2.play()
                 # звук відбиття м'ячика від платформи
+
+             
                 pass
 
     else:
